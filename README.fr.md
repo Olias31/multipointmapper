@@ -24,7 +24,7 @@ Inspiré de [LimeSurvey-Signature-Question](https://github.com/adamzammit/LimeSu
 
 ### LimeSurvey 6.x (interface graphique)
 
-1. Télécharger le zip de la dernière version (`MultiPointMapper_v1.0.zip`) depuis les [Releases](../../releases)
+1. Télécharger le zip de la dernière version (`MultiPointMapper_v1.0.zip`) depuis les [Releases GitHub](https://github.com/Olias31/multipointmapper/releases)
 2. Dans l'administration LimeSurvey : **Configuration → Thèmes → Thèmes de questions → Importer**
 3. Uploader le zip — le thème `multipointmapper` est disponible
 
