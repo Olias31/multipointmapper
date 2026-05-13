@@ -9,6 +9,10 @@ Inspiré de [LimeSurvey-Signature-Question](https://github.com/adamzammit/LimeSu
 ![LimeSurvey](https://img.shields.io/badge/LimeSurvey-4.x%20%7C%205.x%20%7C%206.x-brightgreen)
 ![Licence](https://img.shields.io/badge/licence-GPL%20v3-blue)
 
+![Capture d'écran MultiPointMapper](screenshot.png)
+
+**Démo en ligne :** [questionnaire.obsat.org](https://questionnaire.obsat.org/index.php/568979?lang=fr)
+
 ---
 
 ## Fonctionnalités
