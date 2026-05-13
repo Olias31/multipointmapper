@@ -1,0 +1,74 @@
+{#
+  MultiPointMapper - item.twig
+  Utilise une approche defensive pour les variables LimeSurvey
+#}
+
+{% set actual_name = name|default(ia[1]|default('')) %}
+{% set actual_value = dispVal|default(value|default(iAnswer|default(''))) %}
+{% set input_name = ia[0]|default(actual_name) %}
+
+{% set mpm_max_points        = question_template_attribute.mpm_max_points|default(0) %}
+{% set mpm_frequency_options = question_template_attribute.mpm_frequency_options|default("Tous les jours;Plusieurs fois par semaine;Une fois par semaine;Quelques fois par mois;Rarement") %}
+{% set mpm_map_center        = question_template_attribute.mpm_map_center|default("43.6119, 3.8778") %}
+{% set mpm_default_zoom      = question_template_attribute.mpm_default_zoom|default(12) %}
+
+<!-- answer -->
+{% if withColumn %}
+<div class='{{ coreClass }} row'>
+    <div class="{{ extraclass }}">
+{% else %}
+<div class='{{ coreClass }} {{ extraclass }}'>
+{% endif %}
+
+    <div class="multipointmapper-container mb-3"
+         id="container-{{ actual_name }}"
+         data-max-points="{{ mpm_max_points }}"
+         data-frequency-options="{{ mpm_frequency_options }}"
+         data-map-center="{{ mpm_map_center }}"
+         data-default-zoom="{{ mpm_default_zoom }}">
+
+        <p class="mpm-instructions">
+            Cliquez sur la carte pour placer un point de distribution.
+            Un formulaire s'ouvrira&nbsp;: saisissez le nom du lieu et votre fréquence de visite.
+            {% if mpm_max_points > 0 %}Maximum&nbsp;: {{ mpm_max_points }} point(s).{% endif %}
+        </p>
+
+        <p class="mpm-counter">0 point placé</p>
+
+        <div id="map-{{ actual_name }}"
+             class="multipointmapper-map"
+             style="height: 450px; width: 100%;">
+        </div>
+
+        {# Champ caché pour soumission JSON #}
+        <input type="hidden"
+               name="{{ input_name }}"
+               id="answer{{ actual_name }}"
+               value="{{ actual_value }}"
+               class="multipointmapper-input form-control {{ kpclass }}" />
+               
+    </div>
+
+{% if withColumn %}
+    </div>
+</div>
+{% else %}
+</div>
+{% endif %}
+
+{{ registerScript( "MultiPointMapper_" ~ actual_name, "
+    function tryInitMap(){
+        if (typeof L !== 'undefined' && typeof initMultiPointMapper === 'function') {
+            initMultiPointMapper('" ~ actual_name ~ "');
+        } else {
+            setTimeout(tryInitMap, 100);
+        }
+    }
+    if (typeof window !== 'undefined') {
+        window.addEventListener('DOMContentLoaded', tryInitMap);
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            tryInitMap();
+        }
+    }
+", "POS_POSTSCRIPT") }}
+<!-- end of answer -->

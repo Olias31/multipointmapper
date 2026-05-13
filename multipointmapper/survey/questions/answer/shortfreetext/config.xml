@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <metadata>
+        <name>multipointmapper</name>
+        <type>question_theme</type>
+        <title>MultiPointMapper — Carte multi-points</title>
+        <creationDate>13/05/2026</creationDate>
+        <author>Grégori Akermann</author>
+        <authorEmail>gregori.akermann@inrae.fr</authorEmail>
+        <authorUrl>https://github.com/Olias31/multipointmapper</authorUrl>
+        <copyright>Copyright 2026 Grégori Akermann — INRAE</copyright>
+        <license>GPL v3</license>
+        <version>1.0.0</version>
+        <apiVersion>1</apiVersion>
+        <description>Carte interactive permettant de declarer de multiples lieux avec nom et frequence.</description>
+        <questionType>S</questionType>
+        <group>Text questions</group>
+    </metadata>
+
+    <compatibility>
+        <version>4.0</version>
+        <version>5.0</version>
+        <version>6.0</version>
+    </compatibility>
+
+    <!-- Inclusion via le gestionnaire d'assets de LimeSurvey -->
+    <files>
+        <css>
+            <filename>css/leaflet.css</filename>
+            <filename>css/multipointmapper.css</filename>
+        </css>
+        <js>
+            <filename>scripts/leaflet.js</filename>
+            <filename>scripts/multipointmapper.js</filename>
+        </js>
+    </files>
+
+    <!-- UTILISATION CRITIQUE DE CUSTOM_ATTRIBUTES AU LIEU DE ATTRIBUTES -->
+    <custom_attributes>
+        <!-- Hiding core attributes unneeded for our map -->
+        <attribute>
+            <name>prefix</name>
+            <category>Display</category>
+            <inputtype/>
+        </attribute>
+        <attribute>
+            <name>suffix</name>
+            <category>Display</category>
+            <inputtype/>
+        </attribute>
+        <attribute>
+            <name>maximum_chars</name>
+            <category>Input</category>
+            <inputtype/>
+        </attribute>
+        <attribute>
+            <name>location_mapservice</name>
+            <category>Display</category>
+            <inputtype/>
+        </attribute>
+
+        <!-- Nos propres attributs custom avec prefixe -->
+        <attribute>
+            <name>mpm_max_points</name>
+            <category>Display</category>
+            <sortorder>1</sortorder>
+            <inputtype>text</inputtype>
+            <default>0</default>
+            <help>Nombre maximum de points (0 = illimite).</help>
+            <caption>Maximum de points (MPM)</caption>
+        </attribute>
+        <attribute>
+            <name>mpm_frequency_options</name>
+            <category>Display</category>
+            <sortorder>2</sortorder>
+            <inputtype>text</inputtype>
+            <default>Tous les jours;Plusieurs fois par semaine;Une fois par semaine;Quelques fois par mois;Rarement</default>
+            <help>Options de frequence separees par des points-virgules.</help>
+            <caption>Options de frequence (MPM)</caption>
+        </attribute>
+        <attribute>
+            <name>mpm_map_center</name>
+            <category>Display</category>
+            <sortorder>3</sortorder>
+            <inputtype>text</inputtype>
+            <default>43.6119, 3.8778</default>
+            <help>Centre initial de la carte (Latitude, Longitude).</help>
+            <caption>Centre de la carte (MPM)</caption>
+        </attribute>
+        <attribute>
+            <name>mpm_default_zoom</name>
+            <category>Display</category>
+            <sortorder>4</sortorder>
+            <inputtype>text</inputtype>
+            <default>12</default>
+            <help>Zoom de depart.</help>
+            <caption>Zoom initial (MPM)</caption>
+        </attribute>
+    </custom_attributes>
+
+    <engine>
+        <load_core_css>true</load_core_css>
+        <load_core_js>true</load_core_js>
+        <show_as_template>true</show_as_template>
+        <show_as_question_type>true</show_as_question_type>
+    </engine>
+</config>

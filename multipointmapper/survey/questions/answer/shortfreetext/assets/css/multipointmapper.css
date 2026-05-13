@@ -1,0 +1,161 @@
+/**
+ * Styles — Thème de question MultiPointMapper v2.0
+ */
+
+/* ── Conteneur principal ──────────────────────────────────────────────── */
+.multipointmapper-container {
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: inherit;
+}
+
+/* ── Texte d'instruction ──────────────────────────────────────────────── */
+.mpm-instructions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #eef4ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+    color: #1e40af;
+    line-height: 1.4;
+}
+
+.mpm-instructions::before {
+    content: '📍';
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ── Compteur de points ───────────────────────────────────────────────── */
+.mpm-counter {
+    display: inline-block;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.82rem;
+    color: #166534;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ── Carte Leaflet ────────────────────────────────────────────────────── */
+.multipointmapper-map {
+    /* z-index bas pour ne pas passer au-dessus des menus LimeSurvey */
+    z-index: 1;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: crosshair;
+}
+
+/* Réinitialise le curseur par défaut quand la carte est en mode pan */
+.leaflet-grab .multipointmapper-map,
+.leaflet-dragging .multipointmapper-map {
+    cursor: grab;
+}
+
+/* ── Popup Leaflet ────────────────────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    padding: 0;
+    overflow: hidden;
+}
+
+.leaflet-popup-content {
+    margin: 0;
+    min-width: 240px;
+}
+
+/* ── Formulaire popup ─────────────────────────────────────────────────── */
+.mpm-popup-form {
+    padding: 14px 16px 12px;
+}
+
+.mpm-popup-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin: 0 0 10px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.mpm-field-group {
+    margin-bottom: 10px;
+}
+
+.mpm-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.mpm-input-name,
+.mpm-input-freq {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 9px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    color: #111827;
+    background: #fff;
+    transition: border-color 0.15s;
+    font-family: inherit;
+}
+
+.mpm-input-name:focus,
+.mpm-input-freq:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+.mpm-coords {
+    font-size: 0.72rem;
+    color: #9ca3af;
+    margin: 6px 0 10px;
+    font-family: monospace;
+}
+
+.mpm-btn-delete {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+    border-radius: 5px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s, border-color 0.15s;
+    font-family: inherit;
+}
+
+.mpm-btn-delete:hover {
+    background: #fca5a5;
+    border-color: #ef4444;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .multipointmapper-map {
+        height: 320px !important;
+    }
+    .mpm-instructions {
+        font-size: 0.82rem;
+    }
+}
